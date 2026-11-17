@@ -5,3 +5,9 @@ add_test(NAME vorbis_test COMMAND vorbis_test)
 add_executable(test_codebook test_codebook.c)
 target_link_libraries(test_codebook PRIVATE vorbis Ogg::ogg $<$<BOOL:${HAVE_LIBM}>:m>)
 add_test(NAME test_codebook COMMAND test_codebook)
+
+add_executable(test_window_granule test_window_granule.c)
+target_link_libraries(test_window_granule PRIVATE
+    Vorbis::vorbisfile Vorbis::vorbisenc
+    $<$<BOOL:${HAVE_LIBM}>:m>)
+add_test(NAME test_window_granule COMMAND test_window_granule)
