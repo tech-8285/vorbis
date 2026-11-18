@@ -2,11 +2,12 @@
 
 AUTOMAKE_OPTIONS = foreign
 
-check_PROGRAMS = test test_codebook
+check_PROGRAMS = test test_codebook test_ov_read
 
 check: $(check_PROGRAMS)
 	./test$(EXEEXT)
 	./test_codebook$(EXEEXT)
+	./test_ov_read$(EXEEXT)
 
 AM_CPPFLAGS = -I$(top_srcdir)/include @OGG_CFLAGS@
 
@@ -15,6 +16,10 @@ test_LDADD = ../lib/libvorbisenc.la ../lib/libvorbis.la @OGG_LIBS@ @VORBIS_LIBS@
 
 test_codebook_SOURCES = test_codebook.c
 test_codebook_LDADD = ../lib/libvorbis.la @OGG_LIBS@ @VORBIS_LIBS@
+
+test_ov_read_SOURCES = test_ov_read.c
+test_ov_read_LDADD = ../lib/libvorbisfile.la ../lib/libvorbisenc.la \
+		     ../lib/libvorbis.la @OGG_LIBS@ @VORBIS_LIBS@
 
 EXTRA_DIST = CMakeLists.txt
 
